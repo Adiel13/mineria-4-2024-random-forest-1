@@ -23,9 +23,18 @@ bosque <- randomForest(DEPARTAMENTO ~ PCH1 + PCH2 + PCH3 + PCH4 + PCH5 + PCH8 +P
                        ntree = 1000,
                        mtry = 10
                        )
-entreno <- predict(bosque, test)
+prueba <- predict(bosque, test)
 
-entreno
+prueba
+
+matriz <- table(test$DEPARTAMENTO, pruebas)
+
+matriz
+
+pre <- sum(diag(matriz)) / sum(matriz)
+pre
+
+plot(bosque)
 
 dato_nuevo <- data.frame(
   PCH1=3,
@@ -76,8 +85,18 @@ bosque2 <- randomForest(ZONA ~ PCH1 + PCH2 + PCH3 + PCH4 + PCH5 + PCH8 +PCH9_A +
                        mtry = 8
 )
 
-prueba <- predict(bosque2, test2)
-prueba
+prueba2 <- predict(bosque2, test2)
+prueba2
+
+matriz2 <- table(test2$ZONA, prueba2)
+
+matriz2
+
+pre2 <- sum(diag(matriz2)) / sum(matriz2)
+pre2
+
+plot(bosque2)
+
 dato_nuevo2 <- data.frame(
   PCH1=1,
   PCH2=1,
@@ -97,4 +116,5 @@ dato_nuevo2 <- data.frame(
 
 prediccion <- predict(bosque2, dato_nuevo2)
 prediccion
+
 
